@@ -11,7 +11,7 @@ public class LexicalAnalyzer {
 	public static void main(String args[]) throws FileNotFoundException {
 		nfa[0][0][0] = 1;
 		LexicalAnalyzer la = new LexicalAnalyzer();
-	/*la.createNFAfromspecification(
+	la.createNFAfromspecification(
 				new File(
                         "C:\\Users\\Creative Devil\\git\\Compiler\\Compiler\\src\\terminals"),
 				new File(
@@ -30,11 +30,11 @@ public class LexicalAnalyzer {
 		}
 
 		la.lexicalSimulator(new File(
-				"C:\\Users\\Creative Devil\\git\\Compiler\\Compiler\\src\\regex_compiler"));
+				"C:\\Users\\Creative Devil\\git\\Compiler\\Compiler\\src\\regex_compiler\\testfile.c"));
 
-*/
+
 		  //la.convertToNFA("\\+|-|/|;|=|{|}|\\(|\\)", 1); 
-		la.convertToNFA("\\+|-|/|;|=|{|}|\\(|\\)|\\<|>|\\*|#|.|,|\"|!|%|&|\\|", 1);
+	/*	la.convertToNFA("\\+|-|/|;|=|{|}|\\(|\\)|\\<|>|\\*|#|.|,|\"|!|%|&|\\|", 1);
 		  la.printNFA();
 		  //la.convertToNFA("a|bk*|cd", la.cur_state); //la.printNFA();
 		  la.convertToDFA();
@@ -42,7 +42,7 @@ public class LexicalAnalyzer {
 		 // la.simulate(new String("+").toCharArray());
 		  la.simulate(new String("#").toCharArray());
 
-
+*/
 	}
 
 	HashMap<Integer, String> stateToToken = new HashMap<Integer, String>();
@@ -290,7 +290,7 @@ public class LexicalAnalyzer {
 				System.out.println("Range exp: "
 						+ String.valueOf(range).substring(0, ind - 1));
                 //////////////////////////////change//////////////////////////
-                int in=0;
+            /*    int in=0;
                 int newstartstate=0,newendstate=0;
                 for(;in<cheatindex;in++){
                     newstartstate=cur_state;
@@ -301,8 +301,8 @@ public class LexicalAnalyzer {
                 push_info_node(newstartstate,'s','[');
                 push_info_node(newendstate,'e',']');
                 /////////////////////////////////////////////////////////////
-
-			//	convertToNFA(String.valueOf(range).substring(0, ind - 1),cur_state);
+            */
+                convertToNFA(String.valueOf(range).substring(0, ind - 1),cur_state);
 
 			} else if (cur == '?'&&(escape_index!=(i-1))) {
 				if (isAlphabet(regexinput.charAt(i - 1))||escape_index==(i-2)) {

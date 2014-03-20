@@ -26,6 +26,7 @@ public class lmd_test {
         else
             lmd_parseTree();            // if syntax is correct then build the parse tree
         System.out.println("Parse tree is successfully built !\n");
+        printParseTree(head_node);
     }
 
     public static void lmd(){
@@ -109,7 +110,7 @@ public class lmd_test {
         node cur=head_node;
 
         for(int i=0;i<token_stream.length;i++){
-            System.out.println(e_stack);
+            //System.out.println(e_stack);
             if(!pc.isTerminal(e_stack.peek())){
                 String rule_token =pc.parse_Table.get(e_stack.pop(),token_stream[i]).right;
 
@@ -154,9 +155,19 @@ public class lmd_test {
         parent.child.add(to_add);
     }
 
+    public static void printParseTree(node head) {
+        System.out.println("Node : "+head.val);
+        for(int i=0;i<head.child.size();i++)
+            System.out.print(head.child.get(i).val+"\t");
+        System.out.println("");
+        for(int i=0;i<head.child.size();i++)
+            printParseTree(head.child.get(i));
+    }
+
 }
 
 class node {
+   // int id;    // Not necessary
     String val;
     ArrayList<node> child;
     node next;
