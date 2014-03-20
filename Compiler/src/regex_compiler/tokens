@@ -1,4 +1,4 @@
 keyword -> if|else|int|return|void|struct|for|while|include
-ID -> [A-Za-z][A-Za-z]*
-NUM -> [0-9][0-9]*
+ID -> <letter>(<letter>|<digit>)*
+NUM -> <digit><digit>*
 special -> \+|-|/|;|=|{|}|\(|\)|\<|\>|\*|#|.|,|"|!|%|&|\|

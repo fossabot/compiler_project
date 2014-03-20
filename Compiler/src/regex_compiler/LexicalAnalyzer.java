@@ -13,10 +13,10 @@ public class LexicalAnalyzer {
 		LexicalAnalyzer la = new LexicalAnalyzer();
 	la.createNFAfromspecification(
 				new File(
-                        "C:\\Users\\Creative Devil\\git\\Compiler\\Compiler\\src\\terminals"),
+                        "C:\\Users\\Creative Devil\\git\\Compiler\\Compiler\\src\\regex_compiler\\terminals"),
 				new File(
-						"C:\\Users\\Creative Devil\\git\\Compiler\\Compiler\\src\\tokens"));
-		// la.printNFA();
+						"C:\\Users\\Creative Devil\\git\\Compiler\\Compiler\\src\\regex_compiler\\tokens"));
+		la.printNFA();
 		// la.printDFA();
 		for (String tk : la.tokenToNFA.keySet()) {
 			System.out.println("Token :  " + tk + " Start : "
@@ -30,7 +30,7 @@ public class LexicalAnalyzer {
 		}
 
 		la.lexicalSimulator(new File(
-				"C:\\Users\\Creative Devil\\git\\Compiler\\Compiler\\src\\regex_compiler\\testfile.c"));
+				"C:\\Users\\Creative Devil\\git\\Compiler\\Compiler\\src\\regex_compiler\\testfile2.c"));
 
 
 		  //la.convertToNFA("\\+|-|/|;|=|{|}|\\(|\\)", 1); 
@@ -270,6 +270,7 @@ public class LexicalAnalyzer {
 
 					} else {
 						range[ind++] = regexinput.charAt(i);
+						cheat[cheatindex++]=regexinput.charAt(i);
 						range[ind++] = '|';
 
 					}
@@ -290,7 +291,7 @@ public class LexicalAnalyzer {
 				System.out.println("Range exp: "
 						+ String.valueOf(range).substring(0, ind - 1));
                 //////////////////////////////change//////////////////////////
-            /*    int in=0;
+                int in=0;
                 int newstartstate=0,newendstate=0;
                 for(;in<cheatindex;in++){
                     newstartstate=cur_state;
@@ -301,8 +302,8 @@ public class LexicalAnalyzer {
                 push_info_node(newstartstate,'s','[');
                 push_info_node(newendstate,'e',']');
                 /////////////////////////////////////////////////////////////
-            */
-                convertToNFA(String.valueOf(range).substring(0, ind - 1),cur_state);
+            
+               // convertToNFA(String.valueOf(range).substring(0, ind - 1),cur_state);
 
 			} else if (cur == '?'&&(escape_index!=(i-1))) {
 				if (isAlphabet(regexinput.charAt(i - 1))||escape_index==(i-2)) {
@@ -977,8 +978,11 @@ public class LexicalAnalyzer {
 			for (int j = 0; j < 128; j++) {
 				for (int k = 0; k < MAX_TRANS; k++) {
 					if (nfa[i][j][k] != 0) {
+						if(j!=0)
 						System.out.printf("state %d ( %c ) -> %d\n", i,
 								(j + 1), nfa[i][j][k]);
+						else
+							System.out.printf("state %d ( empty ) -> %d\n", i,nfa[i][j][k]);
 					}
 				}
 			}

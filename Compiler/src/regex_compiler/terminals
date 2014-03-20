@@ -1,2 +1,2 @@
-letter -> [A-Za-z]
+letter -> [A-Za-z_]
 digit -> [0-9]
