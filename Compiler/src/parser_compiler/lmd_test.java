@@ -25,6 +25,7 @@ public class lmd_test {
             System.out.println("Not correct !\n");
         else
             lmd_parseTree();            // if syntax is correct then build the parse tree
+        System.out.println("Parse tree is successfully built !\n");
     }
 
     public static void lmd(){
@@ -133,7 +134,8 @@ public class lmd_test {
             else {
                    // if(e_stack.peek().equals(token_stream[i]))
                e_stack.pop();
-               if(cur.next!=null ) cur=cur.next;
+                if(cur!=null)cur=cur.next;
+               //if(cur.next!=null ) cur=cur.next;
             }
         }
     }
@@ -145,8 +147,10 @@ public class lmd_test {
             to_add.next=parent.next;
             parent.next=to_add;
         }
-        else
-            to_add.next=parent.child.get(parent.child.size()-1);
+        else {
+            to_add.next=parent.child.get(parent.child.size()-1).next;
+            parent.child.get(parent.child.size()-1).next=to_add;
+        }
         parent.child.add(to_add);
     }
 
